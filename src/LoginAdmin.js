@@ -29,7 +29,7 @@ const LoginAdmin = () => {
             console.log(loggedInUser)
             history.replace(from)
             
-        /*fetch('http://localhost:5000/isAdmin', {
+        /*fetch('https://agile-oasis-23471.herokuapp.com/isAdmin', {
                 method: 'POST',
                 headers: {'content-type': 'application/json'},
                 body: JSON.stringify(admin)

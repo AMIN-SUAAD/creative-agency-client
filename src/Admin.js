@@ -16,7 +16,7 @@ const Admin = () => {
     const [addServiceData, setAddServiceData] = useState({});
     const [addServiceDone, setAddServiceDone] = useState(false);
     function isAdmin() {
-        fetch('http://localhost:5000/isAdmin', {
+        fetch('https://agile-oasis-23471.herokuapp.com/isAdmin', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -37,7 +37,7 @@ const Admin = () => {
         setAddServiceClicked(false)
 
 
-        fetch('http://localhost:5000/serviceList', {
+        fetch('https://agile-oasis-23471.herokuapp.com/serviceList', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -74,7 +74,7 @@ const Admin = () => {
         e.preventDefault();
 
 
-        fetch('http://localhost:5000/addAdmin', {
+        fetch('https://agile-oasis-23471.herokuapp.com/addAdmin', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newAdmin)
@@ -111,7 +111,7 @@ const Admin = () => {
 
 
 
-        fetch('http://localhost:5000/addService', {
+        fetch('https://agile-oasis-23471.herokuapp.com/addService', {
             method: 'POST',
             body: formData
         })

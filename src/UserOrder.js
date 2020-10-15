@@ -32,7 +32,7 @@ const UserOrder = () => {
         setPreviousOrderClicked(true);
         setNewOrderClicked(false);
         setReviewClicked(false);
-        fetch('http://localhost:5000/orders', {
+        fetch('https://agile-oasis-23471.herokuapp.com/orders', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -56,7 +56,7 @@ const UserOrder = () => {
     function handleNewOrder() {
 
         loggedInUser.order = order;
-        fetch('http://localhost:5000/addOrder', {
+        fetch('https://agile-oasis-23471.herokuapp.com/addOrder', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -72,7 +72,7 @@ const UserOrder = () => {
 
     /*function handleNewReview() {
 
-        fetch('http://localhost:5000/addReview', {
+        fetch('https://agile-oasis-23471.herokuapp.com/addReview', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -104,7 +104,7 @@ const UserOrder = () => {
 
 
       
-        fetch('http://localhost:5000/addReview', {
+        fetch('https://agile-oasis-23471.herokuapp.com/addReview', {
           method: 'POST',
           body: formData
         })
