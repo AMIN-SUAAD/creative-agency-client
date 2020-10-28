@@ -12,7 +12,7 @@ const Services = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
 
-        fetch('https://agile-oasis-23471.herokuapp.com/services')
+        fetch('https://polar-coast-42999.herokuapp.com/services')
         .then(res => res.json())
         .then(data => {
             setServices(data);

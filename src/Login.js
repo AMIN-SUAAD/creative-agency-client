@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 
 import { UserContext } from './App';
 import { useHistory, useLocation } from 'react-router-dom';
+import logoCreativeAgency from './images/logoCreativeAgency.png'
+import GoogleButton from 'react-google-button'
 
 
 const Login = () => {
@@ -45,14 +47,19 @@ const Login = () => {
 
     }
     return (
-        <div style={{textAlign: 'center'}}>
-            <br/>
-            <br/>
+        <div >
+            <div class = "d-flex justify-content-center">
+
+            <img style = {{ width: '200px', marginTop: '50px'}}src={logoCreativeAgency}></img>
+            </div>
+
+            <div class = "d-flex justify-content-center" style = {{marginTop: '20px'}}>
             
-      
-            <br/>
+            <GoogleButton onClick={handleGoogleSignIn}/>
+            </div>
+
+
             
-            <Button variant="contained" color="primary" onClick={handleGoogleSignIn}>Sign in with google</Button>
         </div>
     );
 };

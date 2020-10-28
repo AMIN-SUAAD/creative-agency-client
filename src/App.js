@@ -14,6 +14,7 @@ import Login from './Login';
 import Admin from './Admin';
 import LoginAdmin from './LoginAdmin';
 import PrivateRouteAdmin from './PrivateRouteAdmin';
+import OurTeam from './OurTeam';
 
 export const UserContext = createContext();
 
@@ -45,6 +46,11 @@ function App() {
 
                 <Admin></Admin>
           </PrivateRouteAdmin>
+
+          <Route path = "/ourTeam">
+              <OurTeam></OurTeam>
+          </Route>
+          
 
           
         </Switch>

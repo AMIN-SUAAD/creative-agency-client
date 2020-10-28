@@ -1,8 +1,8 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import carousel1 from './images/carousel1.png';
-import carousel2 from './images/carousel2.png';
-import carousel3 from './images/carousel3.png';
+import carousel2 from './images/carousel2.jpg';
+import carousel3 from './images/carousel3.jpg';
 
 
 const PreviousWork = () => {

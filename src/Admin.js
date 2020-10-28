@@ -15,8 +15,10 @@ const Admin = () => {
     const [file, setFile] = useState({});
     const [addServiceData, setAddServiceData] = useState({});
     const [addServiceDone, setAddServiceDone] = useState(false);
+
+
     function isAdmin() {
-        fetch('https://agile-oasis-23471.herokuapp.com/isAdmin', {
+        fetch('https://polar-coast-42999.herokuapp.com/isAdmin', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -31,13 +33,14 @@ const Admin = () => {
                 }
             })
     }
+
     function handleServiceList() {
         setServiceListClicked(true)
         setAddAdminClicked(false)
         setAddServiceClicked(false)
 
 
-        fetch('https://agile-oasis-23471.herokuapp.com/serviceList', {
+        fetch('https://polar-coast-42999.herokuapp.com/serviceList', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -51,6 +54,7 @@ const Admin = () => {
 
 
     }
+
     let i = 0;
 
     function handleAddAdmin() {
@@ -58,6 +62,7 @@ const Admin = () => {
         setAddAdminClicked(true);
         setServiceListClicked(false);
         setAddServiceClicked(false);
+        setAddServiceDone(false)
 
 
 
@@ -74,7 +79,7 @@ const Admin = () => {
         e.preventDefault();
 
 
-        fetch('https://agile-oasis-23471.herokuapp.com/addAdmin', {
+        fetch('https://polar-coast-42999.herokuapp.com/addAdmin', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newAdmin)
@@ -97,6 +102,7 @@ const Admin = () => {
         setAddServiceClicked(true)
         setServiceListClicked(false)
         setAddAdminClicked(false)
+        setAddAdminSuccess(false)
     }
 
     function handleSubmit(e) {
@@ -111,13 +117,13 @@ const Admin = () => {
 
 
 
-        fetch('https://agile-oasis-23471.herokuapp.com/addService', {
+        fetch('https://polar-coast-42999.herokuapp.com/addService', {
             method: 'POST',
             body: formData
         })
             .then(response => response.json())
             .then(data => {
-                if(data){
+                if (data) {
                     setAddServiceDone(true)
                 }
             })
@@ -126,6 +132,7 @@ const Admin = () => {
             })
 
     }
+
     function handleImageChange(e) {
 
         const newFile = e.target.files[0];
@@ -155,7 +162,8 @@ const Admin = () => {
                 isAdmin()
             }
             {
-                admin && (
+
+                admin ? (
                     <div className="row">
                         <div className="col-md-3 offset-md-1" >
 
@@ -170,7 +178,7 @@ const Admin = () => {
 
                         </div>
 
-                        <div className="col-md-7" style={{ marginTop: '30px' }} >
+                        <div className="col-md-7" style={{ marginTop: '50px' }} >
 
                             {
                                 serviceListClicked && serviceList.map(service => <div>
@@ -205,7 +213,7 @@ const Admin = () => {
 
 
                                         <button onClick={addAdmin} type="submit" class="btn btn-primary">Add</button>
-                                        {addAdminSuccess && <p style={{ color: 'green' }}>Successfull!</p>}
+                                        {addAdminSuccess && <p style={{ color: 'green' }}>Successfull! Reload the page to add another admin.</p>}
                                     </form>
 
 
@@ -215,6 +223,7 @@ const Admin = () => {
                             }
 
                             {addServiceClicked && <div>
+
 
 
                                 <form onSubmit={handleSubmit}>
@@ -235,7 +244,7 @@ const Admin = () => {
                                     <button type="submit" class="btn btn-dark">Send</button>
                                 </form>
                                 {
-                                    addServiceDone && <p style = {{color: 'green'}}>Successfull!</p>
+                                    addServiceDone && <p style={{ color: 'green' }}>Successfull! Reload the page to add another service.</p>
                                 }
 
 
@@ -250,14 +259,9 @@ const Admin = () => {
 
 
 
-
-
-
-
-
                     </div>
 
-                )
+                ) : <p style={{ textAlign: 'center', color: 'red' }}>Only Admin Entry. Go to the home page to order.</p>
             }
 
         </div>

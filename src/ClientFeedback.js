@@ -11,7 +11,7 @@ const ClientFeedback = () => {
     const [feedbacks, setFeedbacks] = useState([]);
     useEffect(() => {
 
-        fetch('https://agile-oasis-23471.herokuapp.com/reviews')
+        fetch('https://polar-coast-42999.herokuapp.com/reviews')
         .then(res => res.json())
         .then(data => {
             setFeedbacks(data);

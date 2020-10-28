@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 
 import { UserContext } from './App';
 import { useHistory, useLocation } from 'react-router-dom';
+import GoogleButton from 'react-google-button'
+import logoCreativeAgency from './images/logoCreativeAgency.png'
 
 
 const LoginAdmin = () => {
@@ -29,7 +31,7 @@ const LoginAdmin = () => {
             console.log(loggedInUser)
             history.replace(from)
             
-        /*fetch('https://agile-oasis-23471.herokuapp.com/isAdmin', {
+        /*fetch('https://polar-coast-42999.herokuapp.com/isAdmin', {
                 method: 'POST',
                 headers: {'content-type': 'application/json'},
                 body: JSON.stringify(admin)
@@ -60,14 +62,19 @@ const LoginAdmin = () => {
 
     }
     return (
-        <div style={{textAlign: 'center'}}>
-            <br/>
-            <br/>
+        <div >
+            <div class = "d-flex justify-content-center">
+
+            <img style = {{ width: '200px', marginTop: '50px'}}src={logoCreativeAgency}></img>
+            </div>
+
+            <div class = "d-flex justify-content-center" style = {{marginTop: '20px'}}>
             
-      
-            <br/>
+            <GoogleButton onClick={handleGoogleSignIn}/>
+            </div>
+
+
             
-            <Button variant="contained" color="primary" onClick={handleGoogleSignIn}>Sign in with google</Button>
         </div>
     );
 };

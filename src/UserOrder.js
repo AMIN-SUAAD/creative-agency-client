@@ -9,30 +9,32 @@ const UserOrder = () => {
     const [reviewClicked, setReviewClicked] = useState(false);
     const [newOrderClicked, setNewOrderClicked] = useState(false);
     const [previousOrderClicked, setPreviousOrderClicked] = useState(false);
-    const [success, setSuccess] = useState(null);
     const [orders, setOrders] = useState([]);
     const [reviewInfo, setReviewInfo] = useState({});
     const [file, setFile] = useState({});
     const [reviewDone, setReviewDone] = useState(false);
+    const [orderPlaceDone, setOrderPlaceDone] = useState(false);
 
     function showReview() {
 
         setReviewClicked(true);
         setNewOrderClicked(false);
         setPreviousOrderClicked(false);
+        setOrderPlaceDone(false)
 
     }
     function showNewOrder() {
         setNewOrderClicked(true);
         setReviewClicked(false);
         setPreviousOrderClicked(false);
+        setReviewDone(false)
 
     }
     function showPreviousOrder() {
         setPreviousOrderClicked(true);
         setNewOrderClicked(false);
         setReviewClicked(false);
-        fetch('https://agile-oasis-23471.herokuapp.com/orders', {
+        fetch('https://polar-coast-42999.herokuapp.com/orders', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -55,8 +57,9 @@ const UserOrder = () => {
 
     function handleNewOrder() {
 
+
         loggedInUser.order = order;
-        fetch('https://agile-oasis-23471.herokuapp.com/addOrder', {
+        fetch('https://polar-coast-42999.herokuapp.com/addOrder', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(loggedInUser)
@@ -65,27 +68,12 @@ const UserOrder = () => {
             .then(res => res.json())
             .then(data => {
                 if (data) {
-                    setSuccess(data)
+                    setOrderPlaceDone(true)
                 }
             })
     }
 
-    /*function handleNewReview() {
 
-        fetch('https://agile-oasis-23471.herokuapp.com/addReview', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(loggedInUser)
-
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data) {
-                    setSuccess(data)
-                }
-            })
-
-    }*/
     function handleReviewBlur(e) {
         reviewInfo[e.target.name] = e.target.value;
 
@@ -104,7 +92,7 @@ const UserOrder = () => {
 
 
       
-        fetch('https://agile-oasis-23471.herokuapp.com/addReview', {
+        fetch('https://polar-coast-42999.herokuapp.com/addReview', {
           method: 'POST',
           body: formData
         })
@@ -142,7 +130,7 @@ const UserOrder = () => {
 
 
 
-            <div className='col-md-7' style={{ marginTop: '20px' }}>
+            <div className='col-md-7' style={{ marginTop: '50px' }}>
 
                 {reviewClicked && (
                     <form onSubmit={handleReviewSubmit}>
@@ -206,7 +194,14 @@ const UserOrder = () => {
                             <textarea onBlur={handleBlur} name="details" class="form-control" id="exampleFormControlTextarea1" placeholder='Project Details' rows="3"></textarea>
                         </div>
                         <button onClick={handleNewOrder} type="button" class="btn btn-dark">Send</button>
-                    </form>)
+                        {
+                            orderPlaceDone && <p style={{ color: 'green' }}>Successfull!Reload the page to add another order.</p>
+                        }
+                    </form>
+                    
+                    
+                    )
+                   
                 }
 
                 {
@@ -230,15 +225,6 @@ const UserOrder = () => {
 
                 }
 
-                {
-
-
-                    success && <p style={{ marginTop: '20px', color: 'green' }}>Successful!</p>
-
-
-
-
-                }
 
 
 
